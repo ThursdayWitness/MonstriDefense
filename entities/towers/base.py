@@ -1,12 +1,11 @@
-from typing import Optional, Union
+from typing import Union
 
 from damage_type import Multi, Air, Ground
 from entities.game_object import GameObject
-from entities.main_base import MainBase
 
 
 class BaseTower(GameObject):
-    def __init__(self, name: str, health: int, speed: float, damage_type=Union[Air, Ground]):
+    def __init__(self, name: str, health: int, speed: float, damage_type: Union[Multi, Air, Ground]):
         super().__init__()
         self._name: str = name
         self._speed: float = speed
@@ -39,10 +38,15 @@ class BaseTower(GameObject):
 
 class AirTower(BaseTower):
     def __init__(self, name="AirTower", health=4, speed=4.4):
-        super().__init__(name, health, speed, Air)
+        super().__init__(name, health, speed, Air())
         # self._speed = "sdfjsdklfjs"
 
 
 class GroundTower(BaseTower):
     def __init__(self, name="GroundTower", health=10, speed=2.2):
-        super().__init__(name, health, speed, Ground)
+        super().__init__(name, health, speed, Ground())
+
+
+class MultiTower(BaseTower):
+    def __init__(self, name='Multi Tower', health=5, speed=1):
+        super().__init__(name, health, speed, Multi())
