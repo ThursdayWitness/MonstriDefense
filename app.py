@@ -1,10 +1,13 @@
 import pygame
 
+import damage_type
+from entities.monsters.base import BaseMonster
+from entities.towers.base import BaseTower, AirTower
+
 
 class App:
     def __init__(self):
         self._running = False
-        color = (0, 0, 255)
         self.size = self.width, self.height = 100, 100
         self._display_surf = None
 
@@ -31,5 +34,7 @@ class App:
 
 
 if __name__ == '__main__':
-    application = App()
-    application.on_execute()
+    #application = App()
+    #application.on_execute()
+    gavno1 = AirTower()
+    print(gavno1.speed)
