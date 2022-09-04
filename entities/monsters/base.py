@@ -1,34 +1,61 @@
-import damage_type
+from typing import Union
+
+from damage_type import Air, Ground
+
 
 class BaseMonster:
-    def __init__(self):
-        self.__cost: int = 0
-        self.__damage: float = 0.0
-        self.__damage_type = damage_type.Air
-        self.__attack_radius: float = 0.0  # wtf we really gonna do MATH to this????????
-        self.__attack_speed: float = 0.0
-        self.__level: int = 0
+    def __init__(self, name: str, cost: int, damage: float, attack_radius: float,
+                 attack_speed: float, damage_type=Union[Air, Ground]):
+        self._name = name
+        self._cost = cost
+        self._damage = damage
+        self._attack_radius = attack_radius  # wtf we really gonna do MATH to this????????
+        self._attack_speed = attack_speed
+        self._damage_type = damage_type
+        self._level = 0
+
+    @property
+    def name(self):
+        return self._name
 
     @property
     def cost(self):
-        return self.__cost
+        return self._cost
 
     @property
     def damage(self):
-        return self.__damage
+        return self._damage
 
     @property
     def attack_radius(self):
-        return self.__attack_radius
+        return self._attack_radius
+
+    @property
+    def attack_speed(self):
+        return self._attack_speed
+
+    @property
+    def level(self):
+        return self._level
 
     @property
     def damage_type(self):
-        return self.__damage_type
+        return self._damage_type
 
-    #def attack(self):
+    # def attack(self):
 
     def sell(self):
-        sell_price = self.__cost / 2
+        sell_price = self._cost / 2
         # add money to player's bank and delete monster from field
 
 
+class PVO(BaseMonster):
+    def __init__(self, name="PVO", cost=40, damage=1.1, attack_radius=44.44,
+                 attack_speed=0.8):
+        super().__init__(name, cost, damage, attack_radius, attack_speed, Air)
+
+
+class Catapult(BaseMonster):
+    def __init__(self, name="Catapult", cost=20, damage=4, attack_radius=24.44,
+                 attack_speed=0.16):
+        super().__init__(name, cost, damage, attack_radius, attack_speed, Air)

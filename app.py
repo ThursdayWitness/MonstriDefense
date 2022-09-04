@@ -1,8 +1,8 @@
 import pygame
 
 import damage_type
-from entities.monsters.base import BaseMonster
-from entities.towers.base import BaseTower, AirTower
+import entities.monsters.base as monsters
+import entities.towers.base as towers
 
 
 class App:
@@ -36,5 +36,15 @@ class App:
 if __name__ == '__main__':
     #application = App()
     #application.on_execute()
-    gavno1 = AirTower()
-    print(gavno1.speed)
+    gavno = towers.BaseTower("Base", 1, 1.0)
+    gavno1 = towers.AirTower()
+    gavno2 = towers.GroundTower()
+
+    govnar = monsters.BaseMonster("Base", 10, 1.1, 1.1, 1.1)
+    govnar1 = monsters.PVO()
+    govnar2 = monsters.Catapult()
+
+    if govnar.damage_type == gavno2.damage_type:
+        print("Ebanulo konkretno")
+    else:
+        print("Huy tam, ne popast")

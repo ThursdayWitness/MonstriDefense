@@ -6,12 +6,12 @@ from entities.main_base import MainBase
 
 
 class BaseTower(GameObject):
-    def __init__(self, name: str, health: int, speed: float, damage_type: Union[Multi, Air, Ground]):
+    def __init__(self, name: str, health: int, speed: float, damage_type=Union[Air, Ground]):
         super().__init__()
         self._name: str = name
         self._speed: float = speed
         self._health: int = health
-        self._damage_type: Union[Multi, Air, Ground] = damage_type
+        self._damage_type = damage_type
 
     @property
     def name(self):
@@ -25,18 +25,24 @@ class BaseTower(GameObject):
     def health(self):
         return self._health
 
+    @property
+    def damage_type(self):
+        return self._damage_type
+
     def take_damage(self, damage):
         self._health -= damage
 
-    @property
-    def type(self):
-        return self._damage_type
 
-   # def attack_base(self):
-        #MainBase.take_damage()  # wtf with self
+# def attack_base(self):
+# MainBase.take_damage()  # wtf with self
 
 
 class AirTower(BaseTower):
-    def __init__(self):
-        super().__init__("AirTower", 4, 4.4, Air)
-        self._speed = "sdfjsdklfjs"
+    def __init__(self, name="AirTower", health=4, speed=4.4):
+        super().__init__(name, health, speed, Air)
+        # self._speed = "sdfjsdklfjs"
+
+
+class GroundTower(BaseTower):
+    def __init__(self, name="GroundTower", health=10, speed=2.2):
+        super().__init__(name, health, speed, Ground)
