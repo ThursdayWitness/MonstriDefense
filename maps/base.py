@@ -1,3 +1,4 @@
+from typing import Optional
 import pygame
 
 
@@ -45,3 +46,12 @@ class Map:
     @property
     def village(self):
         return self._village
+
+    def check_cell(self, mouse_pos: tuple[int, int], map_position: Size) -> Optional[tuple[int, int, bool]]:
+        x_pos = (mouse_pos[0] - map_position.width) // self._cell.width
+        y_pos = (mouse_pos[1] - map_position.height) // self._cell.height
+        if map_position.height < mouse_pos[1] < len(self._map) * self._cell.height + map_position.height and map_position.width < mouse_pos[0] < len(self._map[0]) * self._cell.width + map_position.width:
+            if self._map[y_pos][x_pos] == '#':
+                return x_pos, y_pos, True
+            return x_pos, y_pos, False
+        return None
