@@ -10,6 +10,7 @@ class App:
         self._running = False
         self.size = self.width, self.height = 720, 640
         self._screen = None
+        self._map = None
 
     def on_init(self):
         pygame.init()
@@ -43,6 +44,7 @@ class App:
                 for j, cell in enumerate(row):
                     if map[i][j] == '#':
                         pygame.draw.rect(self._screen, white, pygame.Rect(cell_size + cell_size*j, cell_size+cell_size*i, cell_size, cell_size), 1)
+
             pygame.display.update()
             clock.tick(60)
 
