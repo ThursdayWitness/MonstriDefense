@@ -33,3 +33,15 @@ class Map:
     @property
     def cell(self):
         return self._cell
+
+    @property
+    def map(self):
+        return self._map
+
+    @property
+    def portal(self):
+        return self._portal
+
+    @property
+    def village(self):
+        return self._village
